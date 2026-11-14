@@ -135,7 +135,7 @@ function renderFooter() {
       <div class="footer-links">
         <a href="collections.html">Shop Collections</a><a href="contact.html">Contact Us</a>
         <a href="about.html">About Us</a><a href="contact.html#shipping">Shipping &amp; Returns</a>
-        <a href="contact.html#custom">Custom Orders</a>
+        <a href="contact.html#custom">Custom Orders</a><a href="#" data-open-newsletter>Get ${"10%"} Off ♡</a>
       </div>
       <div class="socials">
         <a href="#" aria-label="Instagram">${ICON.instagram}</a>
@@ -277,6 +277,112 @@ function bindGlobal() {
   });
 }
 
+/* ---------- Newsletter popup (a card that opens like a book) ---------- */
+const NEWSLETTER = {
+  discount: "10%",        // shown in the popup
+  code: "BLOOMS10",       // coupon shown after signing up — create the same code in your store
+  delayMs: 4000,          // auto-open after this long on the page
+  remindDays: 7,          // if closed, don't auto-open again for this many days
+};
+
+function renderNewsletterPopup() {
+  const wrap = document.createElement("div");
+  wrap.className = "nl-popup";
+  wrap.id = "nlPopup";
+  wrap.setAttribute("role", "dialog");
+  wrap.setAttribute("aria-modal", "true");
+  wrap.setAttribute("aria-label", "Join the BLOOMS newsletter");
+  wrap.innerHTML = `
+    <div class="nl-book">
+      <button class="nl-close" id="nlClose" aria-label="Close">Close ✕</button>
+
+      <div class="nl-page" id="nlPage">
+        <form class="nl-form" id="nlForm" novalidate>
+          <h4>Join Our Blooming Circle</h4>
+          <p>New collections, gifting ideas &amp; little surprises.</p>
+          <input type="text" id="nlName" placeholder="Your Name" autocomplete="name" aria-label="Your name">
+          <input type="email" id="nlEmail" placeholder="Your Email" autocomplete="email" aria-label="Your email" required>
+          <div class="nl-error" id="nlError" aria-live="polite"></div>
+          <button class="btn btn-primary" type="submit">Subscribe ♡</button>
+          <div class="nl-ps">
+            <span class="script">P.S.</span>
+            <span>Get <strong>${NEWSLETTER.discount} off</strong> your first order after signing up — our little thank-you.</span>
+          </div>
+          <button type="button" class="nl-later" id="nlLater">Maybe later</button>
+        </form>
+      </div>
+
+      <div class="nl-cover" id="nlCover">
+        <div class="nl-face nl-front">
+          <span class="nl-seal">BA</span>
+          <span class="script">A little letter<br>for you ♡</span>
+          <small>from BLOOMS by Aditi</small>
+        </div>
+        <div class="nl-face nl-back">
+          <h3>Hi Friend,</h3>
+          <p>Here is our newsletter <span class="hl">MADE FOR YOU…</span></p>
+          <span class="nl-aside">only twice a month, promise ♡</span>
+          <p>…a little invitation to step into our studio, where resin, petals and wax
+            slowly turn into memories.</p>
+          <p class="nl-extra">Be the first to see new collections, behind-the-scenes stories and
+            gifting ideas for the people you love.</p>
+          <p>We can't wait to welcome you into our community!</p>
+          <div class="nl-sign">— with love, Aditi</div>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(wrap);
+
+  const open = () => {
+    wrap.classList.add("show");
+    setTimeout(() => wrap.classList.add("open"), 1500); // show the closed card first, then open it
+    setTimeout(() => $("#nlEmail")?.focus({ preventScroll: true }), 3100);
+  };
+  const close = () => {
+    wrap.classList.remove("open");
+    setTimeout(() => wrap.classList.remove("show"), 700);
+    store.set("blooms-nl-dismissed", Date.now());
+  };
+  window.openNewsletter = open;
+
+  $("#nlClose").addEventListener("click", close);
+  $("#nlLater").addEventListener("click", close);
+  wrap.addEventListener("click", (e) => { if (e.target === wrap) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && wrap.classList.contains("show")) close(); });
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-open-newsletter]");
+    if (t) { e.preventDefault(); open(); }
+  });
+
+  $("#nlForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = $("#nlEmail"), err = $("#nlError");
+    if (!email.value.trim() || !email.checkValidity()) { err.textContent = "Please enter a valid email address."; email.focus(); return; }
+    const name = $("#nlName").value.trim().split(" ")[0];
+    // TODO: send { name, email } to Mailchimp / Klaviyo / your backend here.
+    store.set("blooms-subscribed", true);
+    $("#nlPage").innerHTML = `
+      <div class="nl-thanks">
+        <h4>Thank you${name ? ", " + name.replace(/[<>&"]/g, "") : ""}!</h4>
+        <p style="font-size:.9rem;margin:6px 0 0">Excited to have you on board ♡<br>Here's your ${NEWSLETTER.discount} off code:</p>
+        <div class="nl-code"><span id="nlCode">${NEWSLETTER.code}</span><button type="button" id="nlCopy">Copy</button></div>
+        <p style="font-size:.75rem;color:var(--muted)">Use it at checkout on your first order.</p>
+        <a href="collections.html" class="btn btn-primary btn-sm" style="margin-top:10px">Start Shopping →</a>
+      </div>`;
+    $("#nlCopy").addEventListener("click", () => {
+      navigator.clipboard?.writeText(NEWSLETTER.code).then(() => toast("Code copied ♡"), () => {});
+    });
+  });
+
+  // Auto-open: once per visitor, unless they subscribed or closed it recently.
+  // Add ?newsletter (or #newsletter) to any URL to force it open, handy for testing.
+  const forced = /[?&#]newsletter\b/.test(location.search + location.hash);
+  const dismissed = store.get("blooms-nl-dismissed", 0);
+  const recentlyClosed = Date.now() - dismissed < NEWSLETTER.remindDays * 864e5;
+  if (forced) setTimeout(open, 400);
+  else if (!store.get("blooms-subscribed", false) && !recentlyClosed) setTimeout(open, NEWSLETTER.delayMs);
+}
+
 /* ---------- Reveal on scroll ---------- */
 function bindReveal() {
   const io = new IntersectionObserver((entries) => entries.forEach((en) => {
@@ -289,6 +395,7 @@ function bindReveal() {
 renderHeader();
 renderFooter();
 bindGlobal();
+renderNewsletterPopup();
 document.addEventListener("DOMContentLoaded", () => {
   window.pageInit?.();
   updateCart();
