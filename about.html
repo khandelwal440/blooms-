@@ -79,7 +79,7 @@
       ];
       document.getElementById("reviews").innerHTML = reviews.map(([q, n, img]) => `
         <div class="review-card reveal">
-          <div class="ph avatar" data-img="${img}"></div>
+          <div class="avatar avatar-initial">${n.charAt(0)}</div>
           <p>“${q}”</p>
           <cite class="script" style="font-style:normal;font-size:1.4rem">— ${n}</cite>
           <div class="stars">★★★★★</div>

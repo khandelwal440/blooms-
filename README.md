@@ -15,19 +15,16 @@ Then open http://localhost:5500 (or just double-click `index.html`).
 - `about.html` — Brand story, values, reviews
 - `contact.html` — Contact, custom gift request form, shipping & returns
 
-## Adding your photos
-Drop JPGs into the `images/` folder with these names — they appear automatically
-(until then a soft blush placeholder shows):
+## Photos & videos
+All photos are in `images/` (resized to max 1200px, ~120 KB each) and the short
+"Watch Us Create" clips are in `videos/`.
 
-| Where | Filenames |
-|---|---|
-| Hero | `hero.jpg` |
-| Collection cards | `col-resin.jpg`, `col-chenille.jpg`, `col-candles.jpg`, `col-gifting.jpg`, `col-accessories.jpg`, `col-jewellery.jpg` |
-| Products | see `img` in `PRODUCTS` inside `js/main.js` (e.g. `p-resin-frame.jpg`); extra gallery shots: `p-resin-frame-2.jpg`, `-3`, `-4` |
-| About teaser / story | `about-hands.jpg`, `about-story.jpg`, `story.jpg`, `raw-materials.jpg` |
-| Page banners | `banner-collections.jpg`, `banner-about.jpg`, `banner-contact.jpg` |
-| Reviews | `avatar-1.jpg`, `avatar-2.jpg`, `avatar-3.jpg` |
-| Instagram | `insta-1.jpg` … `insta-6.jpg` |
+- **Add or change a product:** put the photo in `images/`, then add/edit a line in
+  `PRODUCTS` in `js/main.js` — `img` is the main photo, `gallery` lists extra photos.
+- **Change a collection cover:** edit `img` in `COLLECTIONS` in `js/main.js`.
+- **Other spots:** `hero.jpg`, `about-hands.jpg`, `about-story.jpg`, `raw-materials.jpg`,
+  `banner-*.jpg`, `insta-1.jpg` … `insta-6.jpg` — replace the file, keep the name.
+- **Videos:** keep clips short (under ~5 MB). They're listed in `index.html` (search `reels`).
 
 ## Editing products & collections
 All product/collection data lives at the top of `js/main.js` (`COLLECTIONS`, `PRODUCTS`).

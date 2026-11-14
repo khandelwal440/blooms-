@@ -23,14 +23,10 @@
         <h1 id="pName"></h1>
         <div class="price" id="pPrice"></div>
         <div class="reviews"><span class="stars">★★★★★</span> (25 reviews)</div>
-        <p style="font-size:.9rem">A handcrafted piece made with premium materials, real dried flowers and gold flakes — designed to preserve your special moments forever. Perfect for gifting or adding a touch of elegance to your home.</p>
+        <p style="font-size:.9rem" id="pDesc"></p>
 
         <h5>Craftsmanship Details</h5>
-        <ul>
-          <li>Hand-poured premium epoxy resin</li>
-          <li>Real dried flowers &amp; gold flakes</li>
-          <li>Handmade with love; slight variations may occur</li>
-        </ul>
+        <ul id="pDetails"></ul>
 
         <h5>Colour</h5>
         <div class="swatches" id="swatches">
@@ -79,15 +75,20 @@
       document.getElementById("crumbs").innerHTML =
         `<a href="index.html">Home</a> / <a href="collections.html?c=${col.id}">${col.name}</a> / ${p.name}`;
       document.getElementById("pName").textContent = p.name;
+      document.getElementById("pDesc").textContent = p.desc || col.about;
+      document.getElementById("pDetails").innerHTML = col.details.map((d) => `<li>${d}</li>`).join("");
 
       const priceEl = document.getElementById("pPrice");
       const optName = document.getElementById("optName");
       const updPrice = () => priceEl.textContent = rupee(p.price + (optName.checked ? 200 : 0));
       optName.onchange = updPrice; updPrice();
 
-      // Gallery: main image + 3 alternates (name-2.jpg etc.)
-      const base = p.img.replace(".jpg", "");
-      const imgs = [p.img, `${base}-2.jpg`, `${base}-3.jpg`, `${base}-4.jpg`];
+      // Gallery: main photo + any extra photos listed for this product
+      const imgs = [p.img, ...(p.gallery || [])];
+      if (imgs.length < 2) {
+        document.getElementById("thumbs").hidden = true;
+        document.querySelector(".product-layout").classList.add("no-thumbs");
+      }
       const main = document.getElementById("mainImage");
       const thumbs = document.getElementById("thumbs");
       thumbs.innerHTML = imgs.map((src, i) =>

@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="ph" data-img="hero.jpg" role="img" aria-label="Resin art plate, bubble candle and scented candle on blush silk"></div>
+          <div class="ph" data-img="hero.jpg" role="img" aria-label="Hand-poured layered soy candles by BLOOMS by Aditi"></div>
         </div>
       </div>
     </section>
@@ -94,8 +94,22 @@
             <p style="font-size:.88rem">A journey of creativity, love and endless blooms.</p>
             <span class="arrow-link" style="align-self:flex-start">Know More →</span>
           </div>
-          <div class="ph" data-img="story.jpg"></div>
+          <div class="ph" data-img="p-pink-lily-4.jpg"></div>
         </a>
+      </div>
+    </section>
+
+    <!-- WATCH US CREATE (videos) -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="reels-head">
+          <div>
+            <h2>Watch Us Create</h2>
+            <span class="script">Little moments from our studio ♡</span>
+          </div>
+          <a href="collections.html" class="arrow-link">Shop the Collection →</a>
+        </div>
+        <div class="reels" id="reels"></div>
       </div>
     </section>
 
@@ -161,7 +175,7 @@
       const slides = document.getElementById("tSlides");
       slides.innerHTML = reviews.map(([q, n, img], i) => `
         <div class="t-slide testimonial ${i === 0 ? "active" : ""}">
-          <div class="ph avatar" data-img="${img}"></div>
+          <div class="avatar avatar-initial">${n.charAt(0)}</div>
           <div><div class="stars">★★★★★</div><blockquote>“${q}”</blockquote><cite>– ${n}</cite></div>
         </div>`).join("");
       let ti = 0;
@@ -173,6 +187,26 @@
       document.getElementById("tNext").onclick = () => show(ti + 1);
       document.getElementById("tPrev").onclick = () => show(ti - 1);
       setInterval(() => show(ti + 1), 6000);
+
+      // Video reels — only play while on screen, to save data
+      const reels = [
+        ["reel-sunflowers.mp4", "Sunflower Bunch", "Hand-twisted, petal by petal"],
+        ["reel-tulip-pot.mp4", "Smiley Tulip Pot", "Chenille tulips in a happy pot"],
+        ["reel-resin-frame.mp4", "Wedding Memory Frame", "Your big day, preserved in resin"],
+        ["reel-sunflower-pot.mp4", "Sunflower Pot", "Sunshine that never wilts"],
+        ["reel-pink-tulip-pot.mp4", "Pink Tulip Pot", "A little pot of happiness"],
+      ];
+      const reelWrap = document.getElementById("reels");
+      reelWrap.innerHTML = reels.map(([src, title, sub]) => `
+        <figure class="reel">
+          <video src="videos/${src}" muted loop playsinline preload="metadata" aria-label="${title} video"></video>
+          <figcaption><strong>${title}</strong>${sub}</figcaption>
+        </figure>`).join("");
+      const vio = new IntersectionObserver((entries) => entries.forEach((en) => {
+        const v = en.target;
+        if (en.isIntersecting) v.play().catch(() => {}); else v.pause();
+      }), { threshold: 0.4 });
+      reelWrap.querySelectorAll("video").forEach((v) => vio.observe(v));
 
       // Instagram
       document.getElementById("instaGrid").innerHTML =

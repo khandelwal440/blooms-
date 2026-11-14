@@ -3,32 +3,74 @@
    ========================================================= */
 
 /* ---------- Data ---------- */
+// Each collection's `about` and `details` are shown on its product pages.
 const COLLECTIONS = [
-  { id: "resin", name: "Resin Art Collection", tag: "Preserve moments in art.", img: "col-resin.jpg" },
-  { id: "chenille", name: "Chenille Collection", tag: "Bunches of handmade happiness.", img: "col-chenille.jpg" },
-  { id: "candles", name: "Scented Candle Collection", tag: "Light up your little joys.", img: "col-candles.jpg" },
-  { id: "gifting", name: "Personalised Gifting Collection", tag: "Gifts with a heart.", img: "col-gifting.jpg" },
-  { id: "accessories", name: "Creative Accessories & Décor", tag: "Add a touch of art.", img: "col-accessories.jpg" },
-  { id: "jewellery", name: "Handmade Jewellery Collection", tag: "Adorn with artistry.", img: "col-jewellery.jpg" },
+  { id: "resin", name: "Resin Art Collection", tag: "Preserve moments in art.", img: "p-wedding-invite.jpg",
+    about: "Your wedding card, photos, dates and dried flowers, sealed forever in crystal-clear resin and finished by hand.",
+    details: ["Hand-poured premium epoxy resin", "Your photos, names & dates added", "Real dried flowers, gold flakes & pearls", "Handmade to order — each piece is one of a kind"] },
+  { id: "chenille", name: "Chenille Collection", tag: "Bunches of handmade happiness.", img: "p-pink-lily.jpg",
+    about: "Soft, fuzzy flowers twisted by hand from chenille wire, wrapped like a real bouquet — and they never wilt.",
+    details: ["Hand-twisted chenille (pipe-cleaner) flowers", "Wrapped in premium florist paper & ribbon", "Colours can be customised", "Never fades or wilts"] },
+  { id: "candles", name: "Scented Candle Collection", tag: "Light up your little joys.", img: "col-candles.jpg",
+    about: "Small-batch candles, hand poured and decorated one at a time, in fragrances made for cosy evenings and gifting.",
+    details: ["Hand-poured soy & gel wax", "Long-lasting fragrance", "Decorated by hand", "Trim the wick to 5mm before each burn"] },
+  { id: "gifting", name: "Personalised Gifting Collection", tag: "Gifts with a heart.", img: "p-explosion-box.jpg",
+    about: "Hampers, boxes and bouquets put together around the person you're gifting — their photos, favourite treats and little notes.",
+    details: ["Curated & packed by hand", "Add photos, names & a handwritten note", "Made for birthdays, anniversaries & festivals", "Tell us your budget — we'll build around it"] },
+  { id: "accessories", name: "Creative Accessories & Décor", tag: "Add a touch of art.", img: "p-chenille-keychain.jpg",
+    about: "Little handmade things that make everyday moments brighter — keychains, bookmarks, hair bands and more.",
+    details: ["Handmade in chenille or resin", "Initials & names available", "Lightweight & sturdy", "Perfect as return favours"] },
+  { id: "jewellery", name: "Handmade Jewellery Collection", tag: "Adorn with artistry.", img: "p-daisy-pendant.jpg",
+    about: "Real pressed flowers and resin turned into delicate pieces you can wear every day.",
+    details: ["Real pressed flowers in resin", "Gold-tone & antique finishes", "Lightweight, everyday wear", "Keep away from water & perfume"] },
 ];
 
+// `img` is the main photo, `gallery` lists extra photos (all in /images).
 const PRODUCTS = [
-  { id: "resin-floral-frame", name: "Resin Floral Frame", price: 1299, col: "resin", img: "p-resin-frame.jpg", best: true },
-  { id: "sunflower-bouquet", name: "Sunflower Bouquet", price: 899, col: "chenille", img: "p-sunflower.jpg", best: true },
-  { id: "tulip-candle", name: "Tulip Candle", price: 749, col: "candles", img: "p-tulip-candle.jpg", best: true },
-  { id: "personalised-keychain", name: "Personalised Keychain", price: 499, col: "accessories", img: "p-keychain.jpg", best: true },
-  { id: "floral-resin-tray", name: "Floral Resin Tray", price: 1799, col: "resin", img: "p-resin-tray.jpg", best: true },
-  { id: "bubble-candle", name: "Bubble Candle", price: 599, col: "candles", img: "p-bubble-candle.jpg", best: true },
-  { id: "resin-coaster-set", name: "Resin Coaster Set", price: 1299, col: "resin", img: "p-coasters.jpg" },
-  { id: "baby-memory-keepsake", name: "Baby Memory Keepsake", price: 2499, col: "resin", img: "p-baby-keepsake.jpg" },
-  { id: "tulip-bunch", name: "Chenille Tulip Bunch", price: 999, col: "chenille", img: "p-tulips.jpg" },
-  { id: "lavender-stems", name: "Lavender Stems (Set of 5)", price: 649, col: "chenille", img: "p-lavender.jpg" },
-  { id: "rose-jar-candle", name: "Rose Jar Candle", price: 899, col: "candles", img: "p-rose-candle.jpg" },
-  { id: "hamper-box", name: "Blush Gift Hamper", price: 2299, col: "gifting", img: "p-hamper.jpg" },
-  { id: "name-plaque", name: "Custom Name Plaque", price: 1499, col: "gifting", img: "p-plaque.jpg" },
-  { id: "bow-bag-charm", name: "Bow Bag Charm", price: 399, col: "accessories", img: "p-bag-charm.jpg" },
-  { id: "pressed-flower-pendant", name: "Pressed Flower Pendant", price: 899, col: "jewellery", img: "p-pendant.jpg" },
-  { id: "resin-drop-earrings", name: "Resin Drop Earrings", price: 699, col: "jewellery", img: "p-earrings.jpg" },
+  // Resin
+  { id: "wedding-invite-frame", name: "Wedding Invitation Preservation Frame", price: 3499, col: "resin", img: "p-wedding-invite.jpg", gallery: ["p-wedding-invite-2.jpg", "p-wedding-invite-3.jpg"], best: true },
+  { id: "resin-photo-plaque", name: "Personalised Resin Photo Plaque", price: 2499, col: "resin", img: "p-resin-plaque.jpg", gallery: ["p-resin-plaque-2.jpg", "p-resin-plaque-3.jpg"], best: true },
+  { id: "baby-birth-keepsake", name: "Baby Birth Details Keepsake", price: 2999, col: "resin", img: "p-baby-keepsake.jpg" },
+  { id: "resin-pooja-thali", name: "Resin Pooja Thali", price: 1499, col: "resin", img: "p-pooja-thali.jpg", gallery: ["p-pooja-thali-2.jpg"] },
+  { id: "ganesha-resin-platter", name: "Ganesha Resin Platter", price: 1799, col: "resin", img: "p-ganesh-platter.jpg" },
+  { id: "resin-photo-collage-frame", name: "Resin Photo Collage Frame", price: 2299, col: "resin", img: "p-collage-frame.jpg", gallery: ["p-collage-frame-2.jpg"] },
+  { id: "couple-memory-frame", name: "Couple Memory Frame", price: 3299, col: "resin", img: "p-couple-frame.jpg", gallery: ["p-couple-frame-2.jpg"] },
+  // Chenille
+  { id: "pink-lily-bouquet", name: "Pink Lily Bouquet", price: 1299, col: "chenille", img: "p-pink-lily.jpg", gallery: ["p-pink-lily-2.jpg", "p-pink-lily-3.jpg", "p-pink-lily-4.jpg"], best: true },
+  { id: "lavender-lily-bouquet", name: "Lavender Lily Bouquet", price: 1499, col: "chenille", img: "p-lavender-lily.jpg", gallery: ["p-lavender-lily-2.jpg", "p-lavender-lily-3.jpg"], best: true },
+  { id: "single-lily-wrap", name: "Single Lily Wrap", price: 399, col: "chenille", img: "p-lily-wrap.jpg", gallery: ["p-lily-wrap-2.jpg"] },
+  { id: "pink-tulip-bouquet", name: "Pink Tulip & Lily Bouquet", price: 1199, col: "chenille", img: "p-tulip-bouquet.jpg" },
+  { id: "blue-birthday-bouquet", name: "Blue Birthday Bouquet", price: 999, col: "chenille", img: "p-blue-bouquet.jpg", gallery: ["p-blue-bouquet-2.jpg"] },
+  { id: "sunflower-stem", name: "Sunflower Stem", price: 349, col: "chenille", img: "p-sunflower.jpg" },
+  // Candles
+  { id: "jamun-shot-candle", name: "Jamun Shot Soy Candle", price: 549, col: "candles", img: "p-jamun-candle.jpg", gallery: ["p-jamun-candle-2.jpg", "p-jamun-candle-3.jpg"], best: true },
+  { id: "caramel-latte-candle", name: "Caramel Latte Soy Candle", price: 549, col: "candles", img: "p-caramel-candle.jpg" },
+  { id: "strawberry-latte-candle", name: "Strawberry Latte Soy Candle", price: 549, col: "candles", img: "p-strawberry-candle.jpg" },
+  { id: "ice-berg-candle", name: "Ice Berg Soy Candle", price: 549, col: "candles", img: "p-iceberg-candle.jpg" },
+  { id: "rose-bouquet-candle", name: "Rose Bouquet Pot Candle", price: 899, col: "candles", img: "p-rose-pot-candle.jpg", gallery: ["p-rose-pot-candle-2.jpg"] },
+  { id: "blue-rose-pot-candle", name: "Blue Rose Pot Candle", price: 849, col: "candles", img: "p-blue-rose-candle.jpg", gallery: ["p-blue-rose-candle-2.jpg"] },
+  { id: "teddy-candle", name: "Teddy Bear Candle", price: 449, col: "candles", img: "p-teddy-candle.jpg", gallery: ["p-teddy-candle-2.jpg"], best: true },
+  { id: "coffee-latte-candle", name: "Coffee Latte Candle", price: 499, col: "candles", img: "p-coffee-candle.jpg" },
+  { id: "sundae-dessert-candle", name: "Sundae Dessert Candle", price: 399, col: "candles", img: "p-sundae-candle.jpg" },
+  { id: "floral-gel-jar-candle", name: "Floral Gel Jar Candle", price: 599, col: "candles", img: "p-floral-jar.jpg" },
+  // Gifting
+  { id: "birthday-explosion-box", name: "Birthday Explosion Box", price: 1999, col: "gifting", img: "p-explosion-box.jpg", best: true },
+  { id: "chocolate-cake-hamper", name: "Chocolate Cake Hamper", price: 2499, col: "gifting", img: "p-cake-hamper.jpg", gallery: ["p-cake-hamper-2.jpg", "p-cake-hamper-3.jpg"] },
+  { id: "snack-hamper", name: "Celebration Snack Hamper", price: 1799, col: "gifting", img: "p-snack-hamper.jpg", gallery: ["p-snack-hamper-2.jpg"] },
+  { id: "chocolate-bouquet", name: "Chocolate Bouquet", price: 1499, col: "gifting", img: "p-choco-bouquet.jpg", gallery: ["p-choco-bouquet-2.jpg"] },
+  { id: "photo-memory-board", name: "Photo Memory Board", price: 1999, col: "gifting", img: "p-photo-wall.jpg", gallery: ["p-photo-wall-2.jpg", "p-photo-wall-3.jpg"] },
+  { id: "evil-eye-favours", name: "Evil Eye Return Favours (Set of 10)", price: 999, col: "gifting", img: "p-evil-eye.jpg", gallery: ["p-evil-eye-2.jpg"] },
+  // Accessories
+  { id: "chenille-flower-keychain", name: "Chenille Flower Keychain", price: 199, col: "accessories", img: "p-chenille-keychain.jpg", gallery: ["p-chenille-keychain-2.jpg", "p-chenille-keychain-3.jpg", "p-chenille-keychain-4.jpg", "p-chenille-keychain-5.jpg", "p-chenille-keychain-6.jpg"], best: true },
+  { id: "resin-initial-keychain", name: "Resin Initial Keychain", price: 249, col: "accessories", img: "p-initial-keychain.jpg", gallery: ["p-initial-keychain-2.jpg"] },
+  { id: "personalised-name-keychain", name: "Personalised Name Keychain", price: 299, col: "accessories", img: "p-name-keychain.jpg" },
+  { id: "resin-bookmark", name: "Resin Flower Bookmark", price: 299, col: "accessories", img: "p-bookmark.jpg", gallery: ["p-bookmark-2.jpg"] },
+  { id: "lily-keychain", name: "Red Lily Keychain", price: 249, col: "accessories", img: "p-lily-keychain.jpg" },
+  { id: "bunny-ear-headband", name: "Bunny Ear Headband", price: 299, col: "accessories", img: "p-bunny-band.jpg", gallery: ["p-bunny-band-2.jpg"] },
+  // Jewellery
+  { id: "pressed-daisy-pendant", name: "Pressed Daisy Pendant", price: 799, col: "jewellery", img: "p-daisy-pendant.jpg" },
+  { id: "resin-heart-studs", name: "Resin Heart Studs", price: 349, col: "jewellery", img: "p-heart-studs.jpg" },
+  { id: "floral-drop-pendant", name: "Floral Drop Pendant", price: 499, col: "jewellery", img: "p-drop-pendant.jpg" },
 ];
 
 const IMG_PATH = "images/";
