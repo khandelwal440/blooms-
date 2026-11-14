@@ -1,0 +1,13 @@
+﻿# This folder also holds unrelated projects; only the BLOOMS site is tracked.
+/*
+!/.gitignore
+!/index.html
+!/collections.html
+!/product.html
+!/about.html
+!/contact.html
+!/serve.js
+!/README.md
+!/css/
+!/js/
+!/images/

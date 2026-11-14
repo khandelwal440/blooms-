@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOOMS by Aditi — Handcrafted Resin Art, Candles &amp; Personalised Gifts</title>
+  <meta name="description" content="Thoughtfully handcrafted. Beautifully personalised. Forever cherished. Resin art, chenille bouquets, scented candles, personalised gifts and handmade jewellery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-floral">
+        <svg viewBox="0 0 120 220" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M60 220C58 170 55 120 70 60"/><path d="M62 170c-18-6-30-20-32-36 16 2 28 14 32 36zM64 130c16-8 30-8 40-2-10 10-26 10-40 2z"/><path d="M70 60c-10-14-10-30 0-44 10 14 10 30 0 44z"/><path d="M70 60c-16-6-26-18-26-34 14 4 24 16 26 34zM70 60c16-6 26-18 26-34-14 4-24 16-26 34z"/><path d="M58 100c-14-14-34-14-46-6 12 10 30 12 46 6z"/></svg>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1>Where Creativity<br>Blooms Into <span class="script">Memories.</span></h1>
+          <p class="lead">Thoughtfully handcrafted. Beautifully personalised. Forever cherished.</p>
+          <div class="hero-actions">
+            <a href="collections.html" class="btn btn-primary">Explore Collections →</a>
+            <a href="contact.html#custom" class="btn btn-outline">Create Your Gift ♡</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="ph" data-img="hero.jpg" role="img" aria-label="Resin art plate, bubble candle and scented candle on blush silk"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Creative Collections</h2>
+          <span class="bow"><svg width="30" height="18" viewBox="0 0 30 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 7C11 2 3 1 3 6s8 4 12 1zm0 0c4-5 12-6 12-1s-8 4-12 1z"/><path d="M15 7l-5 10M15 7l5 10"/><circle cx="15" cy="7" r="1.6" fill="currentColor"/></svg></span>
+        </div>
+        <div class="collections-grid" id="homeCollections"></div>
+      </div>
+    </section>
+
+    <!-- BESTSELLERS + ABOUT -->
+    <section class="split-band">
+      <div class="bestsellers">
+        <div class="bestsellers-head">
+          <h2>Bestsellers <span class="script">Loved by you</span></h2>
+          <div class="slider-nav">
+            <button class="round-btn" id="bsPrev" aria-label="Previous">‹</button>
+            <button class="round-btn" id="bsNext" aria-label="Next">›</button>
+          </div>
+        </div>
+        <div class="product-track" id="bestTrack"></div>
+      </div>
+
+      <div class="about-teaser">
+        <div>
+          <span class="eyebrow">About Our Brand</span>
+          <h2>Every Creation<br>Has a Story.</h2>
+          <p>At BLOOMS by Aditi, we believe in the magic of handmade. Our journey began with a simple dream — to turn creativity into something meaningful, beautiful and timeless.</p>
+          <a href="about.html" class="btn btn-primary btn-sm">Know More →</a>
+        </div>
+        <figure class="polaroid">
+          <div class="ph" data-img="about-hands.jpg" role="img" aria-label="Hands placing pressed flowers into resin"></div>
+          <figcaption>Crafted with Love ♡</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="why">
+      <div class="container why-inner" id="whyInner"></div>
+    </section>
+
+    <!-- RAW MATERIALS / STORY BANNERS -->
+    <section class="section-sm">
+      <div class="container banners">
+        <a href="collections.html" class="banner reveal">
+          <div class="ph" data-img="raw-materials.jpg"></div>
+          <div class="copy">
+            <h3>The Art Behind Every Creation.</h3>
+            <p style="font-size:.88rem">Explore our raw materials — the little essentials that bring our handmade magic to life.</p>
+            <span class="btn btn-outline btn-sm" style="align-self:flex-start">Discover Raw Materials →</span>
+          </div>
+        </a>
+        <a href="about.html" class="banner story reveal">
+          <div class="copy">
+            <h3>Our Story</h3>
+            <p style="font-size:.88rem">A journey of creativity, love and endless blooms.</p>
+            <span class="arrow-link" style="align-self:flex-start">Know More →</span>
+          </div>
+          <div class="ph" data-img="story.jpg"></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS + INSTAGRAM -->
+    <section class="section-sm" style="padding-top:20px">
+      <div class="container social-band">
+        <div>
+          <h2>Our Happy Customers</h2>
+          <span class="script">Stories that Bloom ♡</span>
+          <div class="t-slider">
+            <button class="t-arrow" id="tPrev" aria-label="Previous review">‹</button>
+            <div id="tSlides" style="flex:1"></div>
+            <button class="t-arrow" id="tNext" aria-label="Next review">›</button>
+          </div>
+        </div>
+        <div>
+          <div class="insta-head">
+            <h2>Follow Our Journey on Instagram</h2>
+            <a href="#" class="btn btn-outline btn-sm">Follow Us ♡</a>
+          </div>
+          <div class="insta-grid" id="instaGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageInit = () => {
+      // Collections
+      document.getElementById("homeCollections").innerHTML =
+        COLLECTIONS.map((c, i) => collectionCard(c, i)).join("");
+
+      // Bestsellers slider
+      const track = document.getElementById("bestTrack");
+      track.innerHTML = PRODUCTS.filter((p) => p.best).map((p) => productCard(p)).join("");
+      const step = () => track.querySelector(".product-card").offsetWidth + 14;
+      document.getElementById("bsNext").onclick = () => {
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+        track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + step() });
+      };
+      document.getElementById("bsPrev").onclick = () => track.scrollBy({ left: -step() });
+
+      // Why choose
+      const why = [
+        [ICON.diamond, "Handcrafted<br>with Love"],
+        [ICON.gift, "Customisation<br>Available"],
+        [ICON.leaf, "Premium Quality<br>Materials"],
+        [ICON.truck, "Pan-India<br>Shipping"],
+      ];
+      document.getElementById("whyInner").innerHTML =
+        `<h2>Why Choose<br>BLOOMS by Aditi? ♡</h2>` +
+        why.map(([i, t]) => `<div class="why-item">${i}${t}</div>`).join("");
+
+      // Testimonials
+      const reviews = [
+        ["Absolutely in love with my order! The craftsmanship is beyond beautiful.", "Riya Sharma", "avatar-1.jpg"],
+        ["The custom gift I ordered for my sister's birthday was perfect. Such attention to detail.", "Ananya P.", "avatar-2.jpg"],
+        ["The candle collection is divine! The fragrance, the packaging — everything is just perfect.", "Mehak T.", "avatar-3.jpg"],
+      ];
+      const slides = document.getElementById("tSlides");
+      slides.innerHTML = reviews.map(([q, n, img], i) => `
+        <div class="t-slide testimonial ${i === 0 ? "active" : ""}">
+          <div class="ph avatar" data-img="${img}"></div>
+          <div><div class="stars">★★★★★</div><blockquote>“${q}”</blockquote><cite>– ${n}</cite></div>
+        </div>`).join("");
+      let ti = 0;
+      const show = (n) => {
+        const all = slides.querySelectorAll(".t-slide");
+        ti = (n + all.length) % all.length;
+        all.forEach((s, i) => s.classList.toggle("active", i === ti));
+      };
+      document.getElementById("tNext").onclick = () => show(ti + 1);
+      document.getElementById("tPrev").onclick = () => show(ti - 1);
+      setInterval(() => show(ti + 1), 6000);
+
+      // Instagram
+      document.getElementById("instaGrid").innerHTML =
+        [1, 2, 3, 4, 5, 6].map((n) => `<a href="#" aria-label="Instagram post ${n}"><div class="ph" data-img="insta-${n}.jpg"></div></a>`).join("");
+    };
+  </script>
+</body>
+</html>

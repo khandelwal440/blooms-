@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — BLOOMS by Aditi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="collections">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <nav class="breadcrumbs" id="crumbs"></nav>
+
+    <section class="section-sm product-layout">
+      <div class="thumbs" id="thumbs"></div>
+      <div class="ph main-image" id="mainImage"></div>
+
+      <div class="product-info">
+        <h1 id="pName"></h1>
+        <div class="price" id="pPrice"></div>
+        <div class="reviews"><span class="stars">★★★★★</span> (25 reviews)</div>
+        <p style="font-size:.9rem">A handcrafted piece made with premium materials, real dried flowers and gold flakes — designed to preserve your special moments forever. Perfect for gifting or adding a touch of elegance to your home.</p>
+
+        <h5>Craftsmanship Details</h5>
+        <ul>
+          <li>Hand-poured premium epoxy resin</li>
+          <li>Real dried flowers &amp; gold flakes</li>
+          <li>Handmade with love; slight variations may occur</li>
+        </ul>
+
+        <h5>Colour</h5>
+        <div class="swatches" id="swatches">
+          <button class="swatch active" style="background:#d8b98a" aria-label="Gold"></button>
+          <button class="swatch" style="background:#9c7a6a" aria-label="Mocha"></button>
+          <button class="swatch" style="background:#5b2a4c" aria-label="Plum"></button>
+          <button class="swatch" style="background:#d9b3bd" aria-label="Blush"></button>
+        </div>
+
+        <h5>Customisation</h5>
+        <label class="check"><input type="checkbox" id="optName"> Add Name / Initials (+₹200)</label>
+        <label class="check"><input type="checkbox" id="optMsg"> Custom Message (Free)</label>
+        <textarea id="note" rows="3" maxlength="50" placeholder="Write your message here… (max 50 characters)"></textarea>
+
+        <div class="qty">
+          <button id="qMinus" aria-label="Decrease">−</button>
+          <input id="qty" value="1" inputmode="numeric" aria-label="Quantity">
+          <button id="qPlus" aria-label="Increase">+</button>
+        </div>
+        <div class="buy-actions">
+          <button class="btn btn-primary btn-block" id="addBtn">Add to Bag</button>
+          <button class="btn btn-outline btn-block" id="buyBtn">Buy Now</button>
+        </div>
+        <div class="perks">
+          <span>🚚 Free shipping above ₹999</span>
+          <span>⏳ Dispatched in 7–10 business days (handmade to order)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="section-title"><h2>Related Products</h2></div>
+      <div class="shop-grid" id="related"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageInit = () => {
+      const id = new URLSearchParams(location.search).get("id");
+      const p = PRODUCTS.find((x) => x.id === id) || PRODUCTS[0];
+      const col = COLLECTIONS.find((c) => c.id === p.col);
+      document.title = `${p.name} — BLOOMS by Aditi`;
+      document.getElementById("crumbs").innerHTML =
+        `<a href="index.html">Home</a> / <a href="collections.html?c=${col.id}">${col.name}</a> / ${p.name}`;
+      document.getElementById("pName").textContent = p.name;
+
+      const priceEl = document.getElementById("pPrice");
+      const optName = document.getElementById("optName");
+      const updPrice = () => priceEl.textContent = rupee(p.price + (optName.checked ? 200 : 0));
+      optName.onchange = updPrice; updPrice();
+
+      // Gallery: main image + 3 alternates (name-2.jpg etc.)
+      const base = p.img.replace(".jpg", "");
+      const imgs = [p.img, `${base}-2.jpg`, `${base}-3.jpg`, `${base}-4.jpg`];
+      const main = document.getElementById("mainImage");
+      const thumbs = document.getElementById("thumbs");
+      thumbs.innerHTML = imgs.map((src, i) =>
+        `<button class="${i === 0 ? "active" : ""}" data-src="${src}" aria-label="View image ${i + 1}"><div class="ph" data-img="${src}"></div></button>`).join("");
+      const setMain = (src) => {
+        main.dataset.img = src; delete main.dataset.done; main.classList.remove("loaded"); main.style.backgroundImage = "";
+        loadImages(main.parentElement);
+      };
+      setMain(p.img);
+      thumbs.addEventListener("click", (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        thumbs.querySelectorAll("button").forEach((x) => x.classList.toggle("active", x === b));
+        setMain(b.dataset.src);
+      });
+
+      document.getElementById("swatches").addEventListener("click", (e) => {
+        const s = e.target.closest(".swatch"); if (!s) return;
+        document.querySelectorAll(".swatch").forEach((x) => x.classList.toggle("active", x === s));
+      });
+
+      const qty = document.getElementById("qty");
+      const clamp = (n) => Math.max(1, Math.min(20, parseInt(n) || 1));
+      document.getElementById("qMinus").onclick = () => qty.value = clamp(+qty.value - 1);
+      document.getElementById("qPlus").onclick = () => qty.value = clamp(+qty.value + 1);
+      qty.onchange = () => qty.value = clamp(qty.value);
+
+      const add = () => addToCart(p.id, clamp(qty.value), document.getElementById("note").value.trim());
+      document.getElementById("addBtn").onclick = add;
+      document.getElementById("buyBtn").onclick = () => { add(); openCart(true); };
+
+      const related = PRODUCTS.filter((x) => x.id !== p.id && x.col === p.col)
+        .concat(PRODUCTS.filter((x) => x.col !== p.col)).slice(0, 4);
+      document.getElementById("related").innerHTML = related.map((r) => productCard(r)).join("");
+    };
+  </script>
+</body>
+</html>

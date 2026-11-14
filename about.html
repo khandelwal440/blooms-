@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — BLOOMS by Aditi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-banner ph" data-img="banner-about.jpg">
+      <div>
+        <h1>About Us</h1>
+        <p class="script">Every Creation Has a Story.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container story-grid">
+        <div class="reveal">
+          <span class="eyebrow" style="font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)">Our Brand Story</span>
+          <h2><span class="script" style="font-size:1.2em">Every Creation</span> Has a Story.</h2>
+          <p>BLOOMS by Aditi is more than just a brand — it's a feeling, a memory, a work of heart.</p>
+          <p>What started as a passion for handmade art and meaningful gifting has grown into a creative journey of crafting beautiful, thoughtful and timeless pieces for people who value uniqueness and emotion in every detail.</p>
+          <p>From preserving wedding flowers in resin to hand-twisting chenille bouquets and pouring small-batch candles, every piece is made by hand, one at a time.</p>
+          <a href="collections.html" class="btn btn-primary btn-sm">Shop Collections →</a>
+        </div>
+        <div class="ph reveal" data-img="about-story.jpg" role="img" aria-label="Aditi crafting a resin piece"></div>
+      </div>
+      <div class="container stats">
+        <div><strong>100%</strong><span>Handmade with Love</span></div>
+        <div><strong>Unique</strong><span>Custom Creations</span></div>
+        <div><strong>Timeless</strong><span>Lasting Memories</span></div>
+      </div>
+    </section>
+
+    <section class="section" style="background:var(--blush)">
+      <div class="container">
+        <div class="section-title"><h2>Why Choose BLOOMS by Aditi?</h2></div>
+        <div class="values" id="values"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Our Customers Say</h2>
+          <p class="script">Real people. Real memories.</p>
+        </div>
+        <div class="reviews-grid" id="reviews"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageInit = () => {
+      const vals = [
+        [ICON.heart, "Handcrafted<br>with Love"],
+        [ICON.user, "Personalised<br>Just for You"],
+        [ICON.diamond, "Premium Quality<br>Materials"],
+        [ICON.gift, "Thoughtful<br>Packaging"],
+        [ICON.shop, "Support<br>Small Business"],
+      ];
+      document.getElementById("values").innerHTML =
+        vals.map(([i, t]) => `<div class="value reveal">${i}${t}</div>`).join("");
+
+      const reviews = [
+        ["Absolutely in love with my resin frame! It's even more beautiful in real life. Thank you for such amazing craftsmanship!", "Riya S.", "avatar-1.jpg"],
+        ["The custom gift I ordered for my sister's birthday was perfect. Such attention to detail and beautiful packaging!", "Ananya P.", "avatar-2.jpg"],
+        ["The candle collection is divine! The fragrance, the packaging, everything is just perfect.", "Mehak T.", "avatar-3.jpg"],
+      ];
+      document.getElementById("reviews").innerHTML = reviews.map(([q, n, img]) => `
+        <div class="review-card reveal">
+          <div class="ph avatar" data-img="${img}"></div>
+          <p>“${q}”</p>
+          <cite class="script" style="font-style:normal;font-size:1.4rem">— ${n}</cite>
+          <div class="stars">★★★★★</div>
+        </div>`).join("");
+    };
+  </script>
+</body>
+</html>

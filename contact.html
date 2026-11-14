@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Custom Orders — BLOOMS by Aditi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-banner ph" data-img="banner-contact.jpg">
+      <div>
+        <h1>Let's Create Something Beautiful</h1>
+        <p class="script">Custom gifts, made just for you.</p>
+      </div>
+    </section>
+
+    <section class="section" id="custom">
+      <div class="container contact-layout">
+        <div>
+          <div class="contact-card">
+            <h2>Get in Touch</h2>
+            <p>Have a special idea in mind? Wedding flowers to preserve, a name to engrave, or a hamper to curate — tell us and we'll bring it to life.</p>
+            <p>✉ hello@bloomsbyaditi.com<br>☏ +91 00000 00000<br>⌚ Mon–Sat, 10am – 7pm</p>
+            <div id="shipping">
+              <h3 style="font-size:1.4rem;margin-top:24px">Shipping &amp; Returns</h3>
+              <p>Free shipping on orders above ₹999 across India. Every piece is handmade to order and dispatched in 7–10 business days. Since items are personalised, we can't accept returns — but if anything arrives damaged, we'll make it right.</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="customForm" novalidate>
+          <h2>Customise Your Gift</h2>
+          <div class="form-grid">
+            <div><label for="fName">Your Name</label><input class="field" id="fName" required></div>
+            <div><label for="fEmail">Email</label><input class="field" id="fEmail" type="email" required></div>
+            <div><label for="fPhone">Phone / WhatsApp</label><input class="field" id="fPhone" type="tel"></div>
+            <div><label for="fType">Gift Type</label>
+              <select class="field" id="fType">
+                <option>Resin Art</option><option>Chenille Bouquet</option><option>Scented Candle</option>
+                <option>Personalised Hamper</option><option>Accessories &amp; Décor</option><option>Jewellery</option><option>Something else</option>
+              </select>
+            </div>
+            <div><label for="fDate">Needed By</label><input class="field" id="fDate" type="date"></div>
+            <div><label for="fBudget">Budget</label>
+              <select class="field" id="fBudget"><option>Under ₹1,000</option><option>₹1,000 – ₹2,500</option><option>₹2,500 – ₹5,000</option><option>₹5,000+</option></select>
+            </div>
+            <div class="full"><label for="fMsg">Tell us your idea</label><textarea id="fMsg" rows="5" required placeholder="Colours, flowers, names, occasion…"></textarea></div>
+            <div class="full"><button class="btn btn-primary" type="submit">Send Request ♡</button>
+              <p id="formMsg" style="font-size:.85rem;color:var(--plum);margin-top:10px"></p></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.pageInit = () => {
+      document.getElementById("customForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const f = e.target, msg = document.getElementById("formMsg");
+        const bad = [...f.querySelectorAll("[required]")].find((el) => !el.value.trim() || !el.checkValidity());
+        if (bad) { msg.textContent = "Please fill in your name, a valid email and your idea."; bad.focus(); return; }
+        f.reset();
+        msg.textContent = "Thank you! We'll get back to you within 24 hours ♡";
+      });
+    };
+  </script>
+</body>
+</html>
