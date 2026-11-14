@@ -486,6 +486,7 @@ textarea:focus, .field:focus { border-color: var(--plum); }
 }
 .nl-back h3 { font-family: var(--script); font-weight: 400; font-size: 2.6rem; color: var(--plum); margin-bottom: .3em; }
 .nl-back p { font-size: .9rem; color: var(--text); line-height: 1.75; }
+.nl-eyebrow { font-size: .66rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
 .nl-back .hl { color: var(--plum-soft); font-weight: 500; letter-spacing: .04em; }
 .nl-aside {
   display: block; align-self: flex-end; margin: -6px 6px 6px 0; transform: rotate(-5deg);
@@ -528,6 +529,8 @@ textarea:focus, .field:focus { border-color: var(--plum); }
   .nl-popup.open .nl-cover { transform: rotateX(180deg); }
   .nl-front { border-radius: 0 0 14px 14px; }
   .nl-back { transform: rotateX(180deg); border-radius: 14px 14px 0 0; padding: 22px 26px; }
+  .nl-back { padding-top: 40px; }
+  .nl-eyebrow { font-size: .58rem; letter-spacing: .2em; }
   .nl-back h3 { font-size: 2rem; margin: 0; }
   .nl-back p { font-size: .8rem; line-height: 1.6; margin-bottom: .4em; }
   .nl-back .nl-extra { display: none; }

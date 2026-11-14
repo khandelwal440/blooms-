@@ -318,15 +318,16 @@ function renderNewsletterPopup() {
           <small>from BLOOMS by Aditi</small>
         </div>
         <div class="nl-face nl-back">
-          <h3>Hi Friend,</h3>
-          <p>Here is our newsletter <span class="hl">MADE FOR YOU…</span></p>
-          <span class="nl-aside">only twice a month, promise ♡</span>
-          <p>…a little invitation to step into our studio, where resin, petals and wax
-            slowly turn into memories.</p>
-          <p class="nl-extra">Be the first to see new collections, behind-the-scenes stories and
-            gifting ideas for the people you love.</p>
-          <p>We can't wait to welcome you into our community!</p>
-          <div class="nl-sign">— with love, Aditi</div>
+          <span class="nl-eyebrow">A Little Note From Our Studio</span>
+          <h3>Hi, Beautiful!</h3>
+          <p>Our little world of handmade magic is <span class="hl">MADE FOR YOU…</span></p>
+          <span class="nl-aside">made with love, just for you ♡</span>
+          <p>Step into a world where flowers never fade, memories last forever and every
+            little detail is handcrafted with love.</p>
+          <p class="nl-extra">Discover new creations, exclusive collections, behind-the-scenes stories
+            and thoughtful gifting inspiration.</p>
+          <p>Because every beautiful memory deserves to bloom forever.</p>
+          <div class="nl-sign">— With love, Aditi ♡</div>
         </div>
       </div>
     </div>`;
