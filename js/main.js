@@ -281,8 +281,7 @@ function bindGlobal() {
 const NEWSLETTER = {
   discount: "10%",        // shown in the popup
   code: "BLOOMS10",       // coupon shown after signing up — create the same code in your store
-  delayMs: 4000,          // auto-open after this long on the page
-  remindDays: 7,          // if closed, don't auto-open again for this many days
+  delayMs: 4000,          // opens this long after every page load / reload
 };
 
 function renderNewsletterPopup() {
@@ -341,7 +340,6 @@ function renderNewsletterPopup() {
   const close = () => {
     wrap.classList.remove("open");
     setTimeout(() => wrap.classList.remove("show"), 700);
-    store.set("blooms-nl-dismissed", Date.now());
   };
   window.openNewsletter = open;
 
@@ -360,7 +358,6 @@ function renderNewsletterPopup() {
     if (!email.value.trim() || !email.checkValidity()) { err.textContent = "Please enter a valid email address."; email.focus(); return; }
     const name = $("#nlName").value.trim().split(" ")[0];
     // TODO: send { name, email } to Mailchimp / Klaviyo / your backend here.
-    store.set("blooms-subscribed", true);
     $("#nlPage").innerHTML = `
       <div class="nl-thanks">
         <h4>Thank you${name ? ", " + name.replace(/[<>&"]/g, "") : ""}!</h4>
@@ -374,13 +371,8 @@ function renderNewsletterPopup() {
     });
   });
 
-  // Auto-open: once per visitor, unless they subscribed or closed it recently.
-  // Add ?newsletter (or #newsletter) to any URL to force it open, handy for testing.
-  const forced = /[?&#]newsletter\b/.test(location.search + location.hash);
-  const dismissed = store.get("blooms-nl-dismissed", 0);
-  const recentlyClosed = Date.now() - dismissed < NEWSLETTER.remindDays * 864e5;
-  if (forced) setTimeout(open, 400);
-  else if (!store.get("blooms-subscribed", false) && !recentlyClosed) setTimeout(open, NEWSLETTER.delayMs);
+  // Auto-open on every page load / reload.
+  setTimeout(open, NEWSLETTER.delayMs);
 }
 
 /* ---------- Reveal on scroll ---------- */
